@@ -87,19 +87,5 @@ class MCPClient:
             if hasattr(block, "text")
         )
 
-    def get_tools_for_claude(self) -> list[dict]:
-        """
-        Convert MCP tool definitions into the format Claude's API expects.
-        Claude needs tools in a specific JSON schema format.
-        """
-        claude_tools = []
-        for tool in self.all_tools:
-            claude_tools.append({
-                "name": tool.name,
-                "description": tool.description,
-                "input_schema": tool.inputSchema
-            })
-        return claude_tools
-
     async def cleanup(self):
         await self.exit_stack.aclose()
